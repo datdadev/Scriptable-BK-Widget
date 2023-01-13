@@ -1,6 +1,3 @@
-// Variables used by Scriptable.
-// These must be at the very top of the file. Do not edit.
-// icon-color: blue; icon-glyph: magic;
 /* --------------------------------------------------------------
 Script: bk-timetable-widget
 Author: DatDaDev
@@ -10,6 +7,11 @@ Description:
 - Displays the today's and tomorrow's timetable of subjects for students studying at Ho Chi Minh University of Techology (HCMUT).
 - Works with medium-sized iOS widget only.
 - Restricted displaying 3 subjects for each day.
+
+Usage:
+1. Visit https://mybk.hcmut.edu.vn/stinfo/ then login into your account.
+2. Click at timetable tab.
+3. Copy all your timetable in the selected semeter as text, except for the row header.
 -------------------------------------------------------------- */
 
 const widget = new ListWidget();
