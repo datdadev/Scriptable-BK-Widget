@@ -57,6 +57,7 @@ function Error() {
 }
 
 let timetable = String(args.widgetParameter);
+console.log({timetable});
 if (timetable != "") {
   // Analyze the information
   let subjectsDetail = [];
@@ -82,7 +83,7 @@ if (timetable != "") {
         //add blended learning
         let learnRoom = subjectsDetail[i][8];
         if(learnRoom === "----"){
-          learnRoom = "Blended"
+          learnRoom = "Blended learning"
         } 
         detail = vStack.addText(subjectsDetail[i][7] + ` [${learnRoom}]`);
         detail.font = Font.systemFont(10);
