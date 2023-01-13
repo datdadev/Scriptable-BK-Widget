@@ -122,7 +122,7 @@ if(timetable != "")
 
 	// Titile showing weekNumber and currentDay
   stack.addSpacer();
-  const weekText = stack.addText("Week " + String(weekNumber) + " - " + weekDay[currentDay]);
+  const weekText = stack.addText("Week " + String(weekNumber) + " - " + weekDay[currentDay - 1]);
   weekText.centerAlignText();
   weekText.font = Font.blackSystemFont(18);
   stack.addSpacer();
