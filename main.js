@@ -80,7 +80,7 @@ if (timetable != "") {
         subject = vStack.addText(subjectsDetail[i][1]);
         subject.font = Font.boldSystemFont(14)
         //add blended learning
-        const learnRoom = subjectsDetail[i][8];
+        let learnRoom = subjectsDetail[i][8];
         if(learnRoom === "----"){
           learnRoom = "Blended"
         } 
@@ -117,7 +117,7 @@ if (timetable != "") {
       }
     }
   } catch (e) {
-    //maybe it another error with the main error, for sure just need to log e
+    //maybe it another error with the main error, for sure just need to log error
     console.log({e});
     Error();
     return;
