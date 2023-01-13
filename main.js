@@ -57,15 +57,13 @@ function Error() {
 }
 
 let timetable = String(args.widgetParameter);
-console.log({ timetable });
 if (timetable != "") {
   // Analyze the information
   let subjectsDetail = [];
   subjects = timetable.split(/\ (?=[A-Z0-9]{6}\t)/)
-  for (let i = 0; i < subjects.length; i++) {
-    //take /\t/ to element of array
+  //take /\t/ to element of array
+  for (let i = 0; i < subjects.length; i++) 
     subjectsDetail.push(subjects[i].split(/\t/));
-  }
 
   //---this is for layout only-----
   let stack = widget.addStack();
@@ -103,7 +101,6 @@ if (timetable != "") {
   try {
     // Checking date&time then output
     for (let i = 0; i < subjectsDetail.length; i++) {
-      let lesson = 0;
       if (subjectsDetail[i][10].match(/\w+\|/gm) != null) {
         let arr = subjectsDetail[i][10].match(/\w+\|/gm).map(
           function (n) {
@@ -114,6 +111,7 @@ if (timetable != "") {
         subjectsDetail[i].splice(10, 1, Array.from(arr));
       }
 
+      let lesson = 0;
       for (let j = 0; j < subjectsDetail[i][10].length; j++) {
 
         //for today
