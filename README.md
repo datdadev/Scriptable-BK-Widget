@@ -1,7 +1,7 @@
 # BK-Timetable-Widget
 
 ## ABOUT
-This project is a iOS widget made with Scriptable, which displays the today's and tomorrow's timetable of subjects for students studying at Ho Chi Minh University of Techology (HCMUT).
+This project is a iOS widget made with [Scriptable](https://scriptable.app), which displays the today's and tomorrow's timetable of subjects for students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn).
 
 <img src="images/preview.jpg" width="375">
 
