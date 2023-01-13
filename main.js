@@ -12,6 +12,7 @@ Usage:
 1. Visit https://mybk.hcmut.edu.vn/stinfo/ then login into your account.
 2. Click at timetable tab.
 3. Copy all your timetable in the selected semeter as text, except for the row header.
+4. Paste it into the parameter text field of the medium-sided widget.
 -------------------------------------------------------------- */
 
 const widget = new ListWidget();
