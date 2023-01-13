@@ -94,13 +94,16 @@ if(timetable != "")
   // Checking date&time then output
   for(let i = 0; i < subjectsDetail.length; i++)
   {
-    let arr = subjectsDetail[i][10].match(/\w+\|/gm).map(
-    	function(n){ 
-      	return parseInt(n.replace(/\|/g,''));
-    	}
-  	);
-  	// Replace the parsed studyWeek into the its former index
-  	subjectsDetail[i].splice(10, 1, Array.from(arr));
+   	if(subjectsDetail[i][10].match(/\w+\|/gm) != null)
+    {
+      let arr = subjectsDetail[i][10].match(/\w+\|/gm).map(
+    		function(n){ 
+      		return parseInt(n.replace(/\|/g,''));
+    		}
+  		);
+  		// Replace the parsed studyWeek into the its former index
+  		subjectsDetail[i].splice(10, 1, Array.from(arr));
+    }
     
     for(let j = 0; j < subjectsDetail[i][10].length; j++)
     {
