@@ -18,7 +18,7 @@ Usage:
 const widget = new ListWidget();
 
 const currentDate = new Date();
-// The widget will be refreshed in every 1 hour.
+// The widget will be refreshed in every 12 hours.
 widget.refreshAfterDate = new Date(currentDate.now + (3600 * 1000));
 
 // Get weekNumber of current week
@@ -79,7 +79,12 @@ if (timetable != "") {
         vStack.addSpacer(7.5)
         subject = vStack.addText(subjectsDetail[i][1]);
         subject.font = Font.boldSystemFont(14)
-        detail = vStack.addText(subjectsDetail[i][7] + ` [${subjectsDetail[i][8]}]`);
+        //add blended learning
+        const learnRoom = subjectsDetail[i][8];
+        if(learnRoom === "----"){
+          learnRoom = "Blended"
+        } 
+        detail = vStack.addText(subjectsDetail[i][7] + ` [${learnRoom}]`);
         detail.font = Font.systemFont(10);
       }
     }
@@ -112,6 +117,8 @@ if (timetable != "") {
       }
     }
   } catch (e) {
+    //maybe it another error with the main error, for sure just need to log e
+    console.log({e});
     Error();
     return;
   }
