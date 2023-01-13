@@ -2,6 +2,8 @@
 
 ## ABOUT
 This project is a iOS widget made with Scriptable, which displays the today's and tomorrow's timetable of subjects for students studying at Ho Chi Minh University of Techology (HCMUT).
+
+<img src="images/preview.jpg" width="375">
 ### Restriction
 Works with medium-sized iOS widget only.
 Restricted displaying 3 subjects for each day.
@@ -11,3 +13,4 @@ Restricted displaying 3 subjects for each day.
 2. Click at timetable tab.
 3. Copy all your timetable in the selected semeter as text, except for the row header.
 4. Paste it into the parameter text field of the medium-sided widget.
+<img src="images/usage.jpg" width="300">
