@@ -29,10 +29,10 @@ const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Sa
 const currentDay = currentDate.getDay()+1;
 
 let gradient = new LinearGradient();
-const colorA = Color.orange()
-const colorB = Color.blue()
+const colorA = Color.dynamic(new Color("EFCDDF"), Color.orange())
+const colorB = Color.dynamic(new Color("FFED80"), Color.blue())
 gradient.colors = [colorA, colorB];
-gradient.locations = [-3,3]
+gradient.locations = [-2.5,2.5]
 
 widget.backgroundGradient = gradient;
 
