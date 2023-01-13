@@ -57,34 +57,42 @@ function Error() {
 }
 
 let timetable = String(args.widgetParameter);
-console.log({timetable});
+console.log({ timetable });
 if (timetable != "") {
   // Analyze the information
   let subjectsDetail = [];
   subjects = timetable.split(/\ (?=[A-Z0-9]{6}\t)/)
-  for (let i = 0; i < subjects.length; i++)
+  for (let i = 0; i < subjects.length; i++) {
+    //take /\t/ to element of array
     subjectsDetail.push(subjects[i].split(/\t/));
+  }
 
+  //---this is for layout only-----
   let stack = widget.addStack();
   let hStack = widget.addStack();
   hStack.layoutHorizontally();
   let vStack1 = hStack.addStack();
   hStack.addSpacer();
+  //maybe vstack 2 belong to the left side?
   let vStack2 = hStack.addStack();
   vStack1.layoutVertically();
   vStack2.layoutVertically();
+  //---end layout only-----
 
-  function Calculation(week, day, i, j, vStack) {
+  function Calculation({ week, day, i, j, vStack, lesson }) {
+    //if this week is the subject week at the moment
     if (week == subjectsDetail[i][10][j]) {
+      lesson++;
+      //if day is the subject day at the moment
       if (parseInt(subjectsDetail[i][5]) == day) {
         vStack.addSpacer(7.5)
-        subject = vStack.addText(subjectsDetail[i][1]);
+        subject = vStack.addText(`${subjectsDetail[i][1]} - B${lesson}`);
         subject.font = Font.boldSystemFont(14)
         //add blended learning
         let learnRoom = subjectsDetail[i][8];
-        if(learnRoom === "----"){
+        if (learnRoom === "----") {
           learnRoom = "Blended learning"
-        } 
+        }
         detail = vStack.addText(subjectsDetail[i][7] + ` [${learnRoom}]`);
         detail.font = Font.systemFont(10);
       }
@@ -95,6 +103,7 @@ if (timetable != "") {
   try {
     // Checking date&time then output
     for (let i = 0; i < subjectsDetail.length; i++) {
+      let lesson = 0;
       if (subjectsDetail[i][10].match(/\w+\|/gm) != null) {
         let arr = subjectsDetail[i][10].match(/\w+\|/gm).map(
           function (n) {
@@ -106,20 +115,25 @@ if (timetable != "") {
       }
 
       for (let j = 0; j < subjectsDetail[i][10].length; j++) {
-        Calculation(weekNumber, currentDay, i, j, vStack1);
+
+        //for today
+        Calculation({ week: weekNumber, day: currentDay, i, j, vStack: vStack1, lesson });
 
         let nextWeekNumber = weekNumber;
+        //add +1 for calc for tomorrow
         let nextDay = currentDay + 1;
         if (currentDay == 8) {
           nextWeekNumber++;
           nextDay = 2;
         }
-        Calculation(nextWeekNumber, nextDay, i, j, vStack2);
+
+        //for tomorrow
+        Calculation({ week: nextWeekNumber, day: nextDay, vStack: vStack2, lesson });
       }
     }
   } catch (e) {
     //maybe it another error with the main error, for sure just need to log error
-    console.log({e});
+    console.log({ e });
     Error();
     return;
   }
