@@ -83,8 +83,8 @@ if(timetable != "")
         vStack.addSpacer(7.5)
       	subject = vStack.addText(subjectsDetail[i][1]);
       	subject.font = Font.boldSystemFont(14)
-      	time = vStack.addText(subjectsDetail[i][7]);
-      	time.font = Font.systemFont(10);
+      	detail = vStack.addText(subjectsDetail[i][7] + ` [${subjectsDetail[i][8]}]`);
+      	detail.font = Font.systemFont(10);
     	}
     }
   }
