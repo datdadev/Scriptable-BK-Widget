@@ -68,7 +68,6 @@ if(timetable != "")
   let stack = widget.addStack();
   let hStack = widget.addStack();
   hStack.layoutHorizontally();
-  //hStack.addSpacer();
   let vStack1 = hStack.addStack();
   hStack.addSpacer();
   let vStack2 = hStack.addStack();
@@ -81,12 +80,11 @@ if(timetable != "")
     {
       if(parseInt(subjectsDetail[i][5]) == day)
     	{
-        vStack.addSpacer(2)
+        vStack.addSpacer(7.5)
       	subject = vStack.addText(subjectsDetail[i][1]);
       	subject.font = Font.boldSystemFont(14)
       	time = vStack.addText(subjectsDetail[i][7]);
       	time.font = Font.systemFont(10);
-        vStack.addSpacer(2)
     	}
     }
   }
@@ -126,7 +124,7 @@ if(timetable != "")
   stack.addSpacer();
   const weekText = stack.addText("Week " + String(weekNumber) + " - " + weekDay[currentDay]);
   weekText.centerAlignText();
-  weekText.font = Font.boldSystemFont(16);
+  weekText.font = Font.blackSystemFont(18);
   stack.addSpacer();
   
   widget.addSpacer();
