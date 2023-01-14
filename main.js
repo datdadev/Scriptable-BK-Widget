@@ -26,7 +26,7 @@ startDate = new Date(currentDate.getFullYear(), 0, 1);
 var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
 var weekNumber = Math.ceil(days / 7);
 const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-const currentDay = currentDate.getDay()+1;
+const currentDay = currentDate.getDay()+1-1;
 
 let gradient = new LinearGradient();
 const colorA = Color.dynamic(new Color("EFCDDF"), Color.orange())
@@ -66,11 +66,16 @@ if(timetable != "")
   	subjectsDetail.push(subjects[i].split(/\t/));
   
   let stack = widget.addStack();
-  let hStack = widget.addStack();
-  hStack.layoutHorizontally();
-  let vStack1 = hStack.addStack();
-  hStack.addSpacer();
-  let vStack2 = hStack.addStack();
+  let hStack1 = widget.addStack();
+  hStack1.layoutHorizontally();
+  
+  let hStack2 = widget.addStack();
+  hStack2.layoutHorizontally();
+  let vStack1 = hStack2.addStack();
+  hStack2.addSpacer();
+  hStack2.addSpacer(1);
+  hStack2.addSpacer();
+  let vStack2 = hStack2.addStack();
   vStack1.layoutVertically();
   vStack2.layoutVertically();
   
@@ -85,12 +90,15 @@ if(timetable != "")
       	subject.font = Font.boldSystemFont(14)
       	detail = vStack.addText(subjectsDetail[i][7] + ` [${subjectsDetail[i][8]}]`);
       	detail.font = Font.systemFont(10);
+        return 1;
     	}
     }
+    return 0;
   }
   
   // Throw error if somethings went wrong
   try{
+  let noClassCheck = [0, 0];
   // Checking date&time then output
   for(let i = 0; i < subjectsDetail.length; i++)
   {
@@ -106,8 +114,8 @@ if(timetable != "")
     }
     
     for(let j = 0; j < subjectsDetail[i][10].length; j++)
-    {
-      Calculation(weekNumber, currentDay, i, j, vStack1);
+    { 
+      noClassCheck[0] = (noClassCheck[0] | Calculation(weekNumber, currentDay, i, j, vStack1));
       
       let nextWeekNumber = weekNumber;
       let nextDay = currentDay + 1;
@@ -116,7 +124,23 @@ if(timetable != "")
       	nextWeekNumber++;
         nextDay = 2;
       }
-      Calculation(nextWeekNumber, nextDay, i, j, vStack2);
+      noClassCheck[1] = (noClassCheck[1] | Calculation(nextWeekNumber, nextDay, i, j, vStack2));
+    }
+  }
+  
+  // Checking if class is available or not then ouput it
+	for(let i = 0; i < 2; i++)
+  {
+    if(noClassCheck[i] == 0)
+    {
+    	let stack = 0;
+      if(i == 0)
+      	stack = vStack1;
+      else
+      	stack = vStack2;
+      stack.addSpacer(7.5)
+    	const text = stack.addText("No Class")
+      text.font = Font.italicSystemFont(14)
     }
   }}catch(e){
     Error();
@@ -124,11 +148,17 @@ if(timetable != "")
   }
 
 	// Titile showing weekNumber and currentDay
-  stack.addSpacer();
-  const weekText = stack.addText("Week " + String(weekNumber) + " - " + weekDay[currentDay - 1]);
+	const todayText = hStack1.addText(String(currentDate.getDate()));
+  todayText.textOpacity = 0.35;
+  hStack1.addSpacer();
+  const weekText = hStack1.addText("Week " + String(weekNumber) + " - " + weekDay[currentDay - 1]);
   weekText.centerAlignText();
   weekText.font = Font.blackSystemFont(18);
-  stack.addSpacer();
+  hStack1.addSpacer();
+  const nextDay = new Date(currentDate);
+	nextDay.setDate(currentDate.getDate() + 1);
+	const tomorrowText = hStack1.addText(String(nextDay.getDate()));
+  tomorrowText.textOpacity = 0.35;
   
   widget.addSpacer();
 	widget.presentMedium();
