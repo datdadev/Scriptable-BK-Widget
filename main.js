@@ -26,7 +26,7 @@ startDate = new Date(currentDate.getFullYear(), 0, 1);
 var days = Math.floor((currentDate - startDate) / (24 * 60 * 60 * 1000));
 var weekNumber = Math.ceil(days / 7);
 const weekDay = ["Sunday","Monday","Tuesday","Wednesday","Thursday","Friday","Saturday"];
-const currentDay = currentDate.getDay()+1-1;
+const currentDay = currentDate.getDay()+1;
 
 let gradient = new LinearGradient();
 const colorA = Color.dynamic(new Color("EFCDDF"), Color.orange())
