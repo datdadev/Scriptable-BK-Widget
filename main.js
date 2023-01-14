@@ -2,12 +2,10 @@
 Script: bk-timetable-widget
 Author: DatDaDev
 Version: 0.0.1
-
 Description:
 - Displays the today's and tomorrow's timetable of subjects for students studying at Ho Chi Minh University of Techology (HCMUT).
 - Works with medium-sized iOS widget only.
 - Restricted displaying 3 subjects for each day.
-
 Usage:
 1. Visit https://mybk.hcmut.edu.vn/stinfo/ then login into your account.
 2. Click at timetable tab.
@@ -119,7 +117,7 @@ if(timetable != "")
       
       let nextWeekNumber = weekNumber;
       let nextDay = currentDay + 1;
-      if(currentDay == 8)
+      if(currentDay == 1)
       {
       	nextWeekNumber++;
         nextDay = 2;
