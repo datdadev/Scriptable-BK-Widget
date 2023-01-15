@@ -37,6 +37,7 @@ widget.backgroundGradient = gradient;
 Script.setWidget(widget);
 Script.complete();
 
+let text = "Please input your timetable correctly in widget's parameter!";
 function Error(){
   let gradient = new LinearGradient();
   gradient.colors = [Color.black(), Color.black()];
@@ -53,7 +54,6 @@ function Error(){
 	return;
 }
 
-let text = "Please input your timetable correctly in widget's parameter!";
 let timetable = String(args.widgetParameter);
 if(timetable != "")
 {
