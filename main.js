@@ -37,7 +37,7 @@ widget.backgroundGradient = gradient;
 Script.setWidget(widget);
 Script.complete();
 
-let text = "Please input your timetable correctly in widget's parameter!";
+let errorText = "Please input your timetable correctly in widget's parameter!";
 function Error(){
   let gradient = new LinearGradient();
   gradient.colors = [Color.black(), Color.black()];
@@ -45,7 +45,7 @@ function Error(){
   
   const stack = widget.addStack();
   stack.addSpacer();
-	const alert = stack.addText(text);
+	const alert = stack.addText(errorText);
 	alert.centerAlignText();
   alert.font = Font.boldSystemFont(20);
   alert.textColor = Color.red();
