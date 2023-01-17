@@ -116,7 +116,6 @@ for(let i = 0; i < 7; i++)
 {
     let e = header.addStack();
     e.layoutHorizontally();
-    e.setPadding(1.25, 0, 0, 0);
     e.size = new Size(10, 12.5);
     
     let text = e.addText(headerTexts[i]);
