@@ -5,7 +5,7 @@ Version: 0.0.1
 Description:
 - Displays the today's and tomorrow's timetable of subjects for students studying at Ho Chi Minh University of Techology (HCMUT).
 - Better works with medium-sized or larger size iOS widget for the better view.
-Usage: Visit https://github.com/datdadev/BK-Widget
+Usage: Visit https://github.com/datdadev/Scriptable-BK-Widget
 -------------------------------------------------------------- */
 
 const widget = new ListWidget();
