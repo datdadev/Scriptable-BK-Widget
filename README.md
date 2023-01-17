@@ -1,15 +1,20 @@
 # BK-Widget
+The following widgets are only be used by students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn)
 
-## BK-Task-Widget
+## Widgets List
+- [Bk-Task-Widget](#bk-task-widget)
+- [Bk-Timetable-Widget](#bk-timetable-widget)
+
+## <a name="bk-task-widget"></a>BK-Task-Widget
 
 ### ABOUT
-This project is an iOS widget made with [Scriptable](https://scriptable.app), which clearly displays tasks of subjects for students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn).
+This project is an iOS widget made with [Scriptable](https://scriptable.app), which clearly displays subjects' tasks.
 
 <img src="images/bk-task-widget/preview1.jpg" width="375">
 <img src="images/bk-task-widget/preview2.jpg" width="375">
 
 #### Description
-- Show all available tasks (quizzes, assignments of subjects for students studying at Ho Chi Minh University of Techology (HCMUT)) in the current month through the calendar.
+- Show all available tasks (quizzes, assignments of subjects) in the current month through the calendar.
 - Display up to 4 upcoming tasks in detail from present.
 
 #### Restriction
@@ -25,10 +30,10 @@ Only available for medium-sized widget.
 
 <img src="images/bk-task-widget/usage.jpg" width="300">
 
-## BK-Timetable-Widget
+## <a name="bk-timetable-widget"></a>BK-Timetable-Widget
 
 ### ABOUT
-This project is an iOS widget made with [Scriptable](https://scriptable.app), which displays the today's and tomorrow's timetable of subjects for students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn).
+This project is an iOS widget made with [Scriptable](https://scriptable.app), which displays the today's and tomorrow's timetable.
 
 <img src="images/bk-timetable-widget/preview.jpg" width="375">
 
