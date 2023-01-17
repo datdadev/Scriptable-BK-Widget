@@ -114,11 +114,16 @@ header = vStack2.addStack();
 header.addSpacer(3);
 for(let i = 0; i < 7; i++)
 {
-    let text = header.addText(headerTexts[i]);
+    let e = header.addStack();
+    e.layoutHorizontally();
+    e.setPadding(1.25, 0, 0, 0);
+    e.size = new Size(8.25, 12.5);
+    
+    let text = e.addText(headerTexts[i]);
     text.font = Font.boldSystemFont(10.5);
     text.textColor = dayColor;
     text.centerAlignText();
-    header.addSpacer(daySpace + 6.7);
+    header.addSpacer(daySpace + 6.75);
 }
 vStack2.addSpacer(rowSpace);
 
