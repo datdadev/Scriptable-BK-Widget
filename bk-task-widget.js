@@ -9,7 +9,7 @@ Description:
 Usage: Visit https://github.com/datdadev/BK-Widget
 -------------------------------------------------------------- */
 
-let errorText = "Invalid token - token not found";
+let errorText = "Invalid token";
 function Error(){
   let gradient = new LinearGradient();
   gradient.colors = [Color.black(), Color.black()];
@@ -19,7 +19,7 @@ function Error(){
   stack.addSpacer();
 	const alert = stack.addText(errorText);
 	alert.centerAlignText();
-  alert.font = Font.boldSystemFont(20);
+  alert.font = Font.boldSystemFont(24);
   alert.textColor = Color.red();
   stack.addSpacer();
 	widget.presentMedium();
@@ -117,13 +117,13 @@ for(let i = 0; i < 7; i++)
     let e = header.addStack();
     e.layoutHorizontally();
     e.setPadding(1.25, 0, 0, 0);
-    e.size = new Size(8.25, 12.5);
+    e.size = new Size(10, 12.5);
     
     let text = e.addText(headerTexts[i]);
     text.font = Font.boldSystemFont(10.5);
     text.textColor = dayColor;
     text.centerAlignText();
-    header.addSpacer(daySpace + 6.75);
+    header.addSpacer(daySpace + 5);
 }
 vStack2.addSpacer(rowSpace);
 
