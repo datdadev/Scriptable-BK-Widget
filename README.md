@@ -5,7 +5,8 @@
 ### ABOUT
 This project is an iOS widget made with [Scriptable](https://scriptable.app), which clearly displays tasks of subjects for students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn).
 
-<img src="images/bk-task-widget/preview.jpg" width="375">
+<img src="images/bk-task-widget/preview1.jpg" width="375">
+<img src="images/bk-task-widget/preview2.jpg" width="375">
 
 #### Description
 - Show all available tasks (quizzes, assignments of subjects for students studying at Ho Chi Minh University of Techology (HCMUT)) in the current month through the calendar.
