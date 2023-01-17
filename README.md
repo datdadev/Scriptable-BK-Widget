@@ -35,7 +35,8 @@ Only available for medium-sized widget.
 ### ABOUT
 This project is an iOS widget made with [Scriptable](https://scriptable.app), which displays the today's and tomorrow's timetable.
 
-<img src="images/bk-timetable-widget/preview.jpg" width="375">
+<img src="images/bk-timetable-widget/preview1.jpg" width="375">
+<img src="images/bk-timetable-widget/preview2.jpg" width="375">
 
 #### Restriction
 Better works with medium-sized or larger size iOS widget for the better view.
