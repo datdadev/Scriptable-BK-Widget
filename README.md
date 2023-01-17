@@ -11,7 +11,7 @@ Better works with medium-sized or larger size iOS widget for the better view.
 ## USAGE
 1. Download [Scriptable (iOS)](https://apps.apple.com/app/id1405459188).
 2. Open the app and create new file.
-3. Copy all the code from [main.js](https://github.com/datdadev/BK-Timetable-Widget/blob/main/main.js) and paste into the compiler in the app.
+3. Copy all the code from [bk-timetable-widget.js](https://github.com/datdadev/BK-Timetable-Widget/blob/main/bk-timetable-widget.js) and paste into the compiler in the app.
 4. Visit https://mybk.hcmut.edu.vn/stinfo/ then login into your account, click at timetable tab and copy your entire timetable in the selected semeter as text, except for the row header.
 5. Create a medium-sized (or larger size) widget at homescreen and edit it, select the file you just created and paste the timetable into the parameter text field.
 
