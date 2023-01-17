@@ -1,5 +1,5 @@
 # Scriptable-BK-Widget
-The following widgets are only be used by students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn)
+The following widgets are only be used by students studying at [Ho Chi Minh University of Techology (HCMUT)](https://hcmut.edu.vn).
 
 ## Widgets List
 - [Bk-Task-Widget](#bk-task-widget)
