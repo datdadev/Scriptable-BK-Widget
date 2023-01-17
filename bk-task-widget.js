@@ -6,7 +6,7 @@ Description:
 - Show all available tasks (quizzes, assignments of subjects for students studying at Ho Chi Minh University of Techology (HCMUT)) in the current month through the calendar.
 - Display up to 4 upcoming tasks in detail from present.
 - Only available for medium-sized widget.
-Usage: Visit https://github.com/datdadev/BK-Widget
+Usage: Visit https://github.com/datdadev/Scriptable-BK-Widget
 -------------------------------------------------------------- */
 
 let errorText = "Invalid token";
