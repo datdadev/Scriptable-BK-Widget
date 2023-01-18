@@ -24,7 +24,7 @@ Only available for medium-sized widget.
 1. Download [Scriptable (iOS)](https://apps.apple.com/app/id1405459188).
 2. Open the app and create new file.
 3. Copy all the code from [bk-task-widget.js](https://github.com/datdadev/BK-Timetable-Widget/blob/main/bk-task-widget.js) and paste into the compiler in the app.
-4. Visit https://e-learning.hcmut.edu.vn/user/managetoken.php then login into your account, copy the **Key** for the **Moodle mobile web service**.
+4. Visit https://e-learning.hcmut.edu.vn/ and login into your account, then visit this [link](https://e-learning.hcmut.edu.vn/user/managetoken.php) to copy the **Key** for the **Moodle mobile web service**.
     > Do not share this **Key** to anyone else
 5. Create a medium-sized widget at homescreen and edit it, select the file you just created and paste the **Key** into the parameter text field.
 
