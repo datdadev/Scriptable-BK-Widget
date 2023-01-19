@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------
 Script: bk-task-widget
 Author: DatDaDev
-Version: 0.0.1
+Version: 0.0.2
 Description:
 - Show all available tasks (quizzes, assignments of subjects for students studying at Ho Chi Minh University of Techology (HCMUT)) in the current month through the calendar.
 - Display up to 4 upcoming tasks in detail from present.
@@ -9,8 +9,7 @@ Description:
 Usage: Visit https://github.com/datdadev/Scriptable-BK-Widget
 -------------------------------------------------------------- */
 
-let errorText = "Invalid token";
-function Error(){
+function Error(errorText){
   let gradient = new LinearGradient();
   gradient.colors = [Color.black(), Color.black()];
   widget.backgroundGradient = gradient;
@@ -55,13 +54,32 @@ function weekChecking(startTime, endTime, response)
   		data.push([startTime, endTime, response["name"]]);
 }
 
+// Defining Cached Data
+let localFm = FileManager.local();
+let cachePath = localFm.documentsDirectory();
+let cachedQuizzes = localFm.joinPath(cachePath, "/lastReadQuizzes");
+let cachedAssignments = localFm.joinPath(cachePath, "/lastReadAssignments");
+if (!localFm.fileExists(cachedQuizzes)) {
+   localFm.createDirectory(cachedQuizzes, false);
+}
+if (!localFm.fileExists(cachedAssignments)) {
+   localFm.createDirectory(cachedAssignments, false);
+}
+
 // Getting Data
 let key = String(args.widgetParameter);
-let quizzesReq = new Request(`https://e-learning.hcmut.edu.vn/webservice/rest/server.php?wstoken=${key}&wsfunction=mod_quiz_get_quizzes_by_courses&moodlewsrestformat=json`);
-quizzesReq.method = "get";
-let quizzesRes = await quizzesReq.loadJSON();
+if(key == "")
+	return Error("Please input your Key in widget's parameter!")
+
+let quizzesRes;
+try{
+quizzesRes = await new Request(`https://e-learning.hcmut.edu.vn/webservice/rest/server.php?wstoken=${key}&wsfunction=mod_quiz_get_quizzes_by_courses&moodlewsrestformat=json`).loadJSON();
 if(quizzesRes["message"] == "Invalid token - token not found")
-	return Error();
+	return Error("Invalid Token");
+localFm.writeString(cachedQuizzes + "/lastread", JSON.stringify(quizzesRes));
+}catch(e){
+	quizzesRes = JSON.parse(localFm.readString(cachedQuizzes + "/lastread"));
+}
 quizzesRes["quizzes"].filter(
     function(quizz){
         startTime = quizz["timeopen"] * 1000;
@@ -69,9 +87,14 @@ quizzesRes["quizzes"].filter(
     	weekChecking(startTime, endTime, quizz);
 	}
 );
-let assignmentsReq = new Request(`https://e-learning.hcmut.edu.vn/webservice/rest/server.php?wstoken=${key}&wsfunction=mod_assign_get_assignments&moodlewsrestformat=json`);
-assignmentsReq.method = "get";
-let assignmentsRes = await assignmentsReq.loadJSON();
+
+let assignmentsRes;
+try{
+assignmentsRes = await new Request(`https://e-learning.hcmut.edu.vn/webservice/rest/server.php?wstoken=${key}&wsfunction=mod_assign_get_assignments&moodlewsrestformat=json`).loadJSON();
+localFm.writeString(cachedAssignments + "/lastread", JSON.stringify(assignmentsRes));
+}catch(e){
+  assignmentsRes = JSON.parse(localFm.readString(cachedAssignments + "/lastread"));
+}
 for(let i = 0; i < assignmentsRes['courses'].length; i++)
 {
 	assignmentsRes["courses"][i]["assignments"].filter(
@@ -83,6 +106,7 @@ for(let i = 0; i < assignmentsRes['courses'].length; i++)
   	);
 }
 
+// Forming Stacks
 widget.addSpacer(6.5);
 let mainStack = widget.addStack();
 mainStack.layoutHorizontally();
