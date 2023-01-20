@@ -335,3 +335,18 @@ Script.setWidget(widget);
 Script.complete();
 
 widget.presentMedium();
+
+
+
+// Copy following code and paste into a new script to remove the cached data
+
+// let localFm = FileManager.local()
+// let cachePath = localFm.documentsDirectory()
+// let cache1 = localFm.joinPath(cachePath, "lastReadQuizzes")
+// let cache2 = localFm.joinPath(cachePath, "lastReadAssignments")
+// log(localFm.fileExists(cache1))
+// log(localFm.readString(cache1))
+// localFm.remove(cache1)
+// log(localFm.fileExists(cache2))
+// log(localFm.readString(cache2))
+// localFm.remove(cache2)
