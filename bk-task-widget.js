@@ -57,28 +57,33 @@ function weekChecking(startTime, endTime, response)
 // Defining Cached Data
 let localFm = FileManager.local();
 let cachePath = localFm.documentsDirectory();
-let cachedQuizzes = localFm.joinPath(cachePath, "/lastReadQuizzes");
-let cachedAssignments = localFm.joinPath(cachePath, "/lastReadAssignments");
-if (!localFm.fileExists(cachedQuizzes)) {
-   localFm.createDirectory(cachedQuizzes, false);
-}
-if (!localFm.fileExists(cachedAssignments)) {
-   localFm.createDirectory(cachedAssignments, false);
-}
+let cachedQuizzes = localFm.joinPath(cachePath, "lastReadQuizzes");
+let cachedAssignments = localFm.joinPath(cachePath, "lastReadAssignments");
 
 // Getting Data
 let key = String(args.widgetParameter);
 if(key == "")
-	return Error("Please input your Key in widget's parameter!")
+{
+  Error("Please input your Key in widget's parameter!");
+  return;
+}
 
 let quizzesRes;
 try{
 quizzesRes = await new Request(`https://e-learning.hcmut.edu.vn/webservice/rest/server.php?wstoken=${key}&wsfunction=mod_quiz_get_quizzes_by_courses&moodlewsrestformat=json`).loadJSON();
 if(quizzesRes["message"] == "Invalid token - token not found")
-	return Error("Invalid Token");
-localFm.writeString(cachedQuizzes + "/lastread", JSON.stringify(quizzesRes));
+{
+  Error("Invalid Token");
+  return;
+}
+localFm.writeString(cachedQuizzes, JSON.stringify(quizzesRes));
 }catch(e){
-	quizzesRes = JSON.parse(localFm.readString(cachedQuizzes + "/lastread"));
+  if(e == "Error: A data connection is not currently allowed." && !localFm.fileExists(cachedQuizzes))
+{
+  Error("Cached Data not found! Please connect to the Internet!");
+  return;
+}
+	quizzesRes = JSON.parse(localFm.readString(cachedQuizzes));
 }
 quizzesRes["quizzes"].filter(
     function(quizz){
@@ -91,9 +96,9 @@ quizzesRes["quizzes"].filter(
 let assignmentsRes;
 try{
 assignmentsRes = await new Request(`https://e-learning.hcmut.edu.vn/webservice/rest/server.php?wstoken=${key}&wsfunction=mod_assign_get_assignments&moodlewsrestformat=json`).loadJSON();
-localFm.writeString(cachedAssignments + "/lastread", JSON.stringify(assignmentsRes));
+localFm.writeString(cachedAssignments, JSON.stringify(assignmentsRes));
 }catch(e){
-  assignmentsRes = JSON.parse(localFm.readString(cachedAssignments + "/lastread"));
+  assignmentsRes = JSON.parse(localFm.readString(cachedAssignments));
 }
 for(let i = 0; i < assignmentsRes['courses'].length; i++)
 {
