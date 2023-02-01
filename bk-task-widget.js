@@ -50,7 +50,7 @@ endOfNextMonth = new Date(currentYear, currentMonth + 2, 0);
 let data = [];
 function weekChecking(startTime, endTime, response)
 {
-    if(new Date(endOfPreviousMonth.getFullYear(), endOfPreviousMonth.getMonth(), 20).getTime() < startTime && startTime < new Date(endOfNextMonth.getFullYear(), endOfNextMonth.getMonth(), 10).getTime() || new Date(endOfPreviousMonth.getFullYear(), endOfPreviousMonth.getMonth(), 20).getTime() < endTime && endTime < new Date(endOfNextMonth.getFullYear(), endOfNextMonth.getMonth(), 10).getTime())
+    if(new Date(endOfPreviousMonth.getFullYear(), endOfPreviousMonth.getMonth(), 15).getTime() < startTime && startTime < new Date(endOfNextMonth.getFullYear(), endOfNextMonth.getMonth(), 15).getTime() || new Date(endOfPreviousMonth.getFullYear(), endOfPreviousMonth.getMonth(), 15).getTime() < endTime && endTime < new Date(endOfNextMonth.getFullYear(), endOfNextMonth.getMonth(), 15).getTime())
   		data.push([startTime, endTime, response["name"]]);
 }
 
@@ -158,7 +158,9 @@ vStack2.addSpacer(rowSpace);
 let row = [];
 let rowCount = 0;
 let dayCount = 1;
-const mondayOffset = 6;
+let firstDayOfMonth = new Date(currentYear, currentMonth, 1).getDay();
+firstDayOfMonth = firstDayOfMonth == 0 ? 7 : firstDayOfMonth;
+const mondayOffset = firstDayOfMonth - 1;
 widget.addSpacer(rowSpace);
 for (let i = 0; i < 42; i++) {
   if (i % 7 == 0) {
