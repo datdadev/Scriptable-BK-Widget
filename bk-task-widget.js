@@ -1,7 +1,7 @@
 /* --------------------------------------------------------------
 Script: bk-task-widget
 Author: DatDaDev
-Version: 0.1.0
+Version: 0.1.1
 Description:
 - Show all available tasks (quizzes, assignments of subjects for students studying at Ho Chi Minh University of Techology (HCMUT)) in the current month through the calendar.
 - Display up to 4 upcoming tasks in detail from present.
@@ -48,10 +48,10 @@ endOfCurrentMonth = new Date(currentYear, currentMonth + 1, 0);
 endOfNextMonth = new Date(currentYear, currentMonth + 2, 0);
 
 let data = [];
-function weekChecking(startTime, endTime, response)
+function weekChecking(startTime, endTime, response, taskType)
 {
     if(new Date(endOfPreviousMonth.getFullYear(), endOfPreviousMonth.getMonth(), 15).getTime() < startTime || new Date(endOfPreviousMonth.getFullYear(), endOfPreviousMonth.getMonth(), 15).getTime() < endTime)
-  		data.push([startTime, endTime, response["name"]]);
+    data.push([startTime, endTime, response["name"], taskType, taskType ? response["cmid"] : response["coursemodule"]]);
 }
 
 // Defining Cached Data
@@ -89,7 +89,7 @@ quizzesRes["quizzes"].filter(
     function(quizz){
         startTime = quizz["timeopen"] * 1000;
         endTime = quizz["timeclose"] * 1000;
-    	weekChecking(startTime, endTime, quizz);
+    	weekChecking(startTime, endTime, quizz, 0);
 	}
 );
 
@@ -106,7 +106,7 @@ for(let i = 0; i < assignmentsRes['courses'].length; i++)
 		function(assignment){
             startTime = assignment["allowsubmissionsfromdate"] * 1000;
         	endTime = assignment["duedate"] * 1000;
-            weekChecking(startTime, endTime, assignment);
+            weekChecking(startTime, endTime, assignment, 1);
    		}
   	);
 }
@@ -292,6 +292,8 @@ function sortFunction(x, y) {
     }
 }
 
+
+log(_data)
 // Show current and upcoming Tasks
 let taskCount = 0;
 let taskLimit;
@@ -316,6 +318,10 @@ function showingTask(dataTime) // time = 0 -> Green; 1 -> Red
             {
                 hStack[i] = vStack1.addStack();
                 hStack[i].size = new Size(150, 30);
+                if(data[j][3])
+                  hStack[i].url = `https://e-learning.hcmut.edu.vn/mod/assign/view.php?id=${data[j][4]}`;
+                else
+                  hStack[i].url = `https://e-learning.hcmut.edu.vn/mod/quiz/view.php?id=${data[j][4]}`
                 hStack[i].addImage(bulletCircle(timeStamp, time));
                 
                 let vStack = [];
@@ -374,8 +380,6 @@ if(config.widgetFamily == "small")
   widget.presentSmall();
 else if(config.widgetFamily == "medium")
   widget.presentMedium();
-
-
 
 // Copy following code and paste into a new script to remove the cached data
 
