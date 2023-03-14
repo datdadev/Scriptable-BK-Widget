@@ -292,8 +292,6 @@ function sortFunction(x, y) {
     }
 }
 
-
-log(_data)
 // Show current and upcoming Tasks
 let taskCount = 0;
 let taskLimit;
