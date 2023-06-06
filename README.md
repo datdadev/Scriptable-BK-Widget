@@ -16,9 +16,10 @@ This project is an iOS widget made with [Scriptable](https://scriptable.app), wh
 #### Description
 - Show all available tasks (quizzes, assignments of subjects) in the current month through the calendar.
 - Display up to 4 upcoming tasks in detail from present.
+- The interactable widget provides instant tasks preview.
 
 #### Restriction
-Only available for medium-sized widget.
+Only available for small and medium-sized widget.
 
 ### USAGE
 1. Download [Scriptable (iOS)](https://apps.apple.com/app/id1405459188).
